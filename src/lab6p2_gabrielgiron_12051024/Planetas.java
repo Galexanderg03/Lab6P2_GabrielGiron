@@ -5,6 +5,8 @@
  */
 package lab6p2_gabrielgiron_12051024;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Galex
@@ -14,6 +16,7 @@ public class Planetas {
     private int Temperatura;
     private int Tamaño;
     private boolean Agua;
+    private ArrayList<Aliens> Alien = new ArrayList();
 
     public Planetas(String Nombre, int Temperatura, int Tamaño, boolean Agua) {
         this.Nombre = Nombre;
@@ -52,6 +55,14 @@ public class Planetas {
 
     public void setAgua(boolean Agua) {
         this.Agua = Agua;
+    }
+
+    public ArrayList<Aliens> getAlien() {
+        return Alien;
+    }
+
+    public void setAlien(ArrayList<Aliens> Alien) {
+        this.Alien = Alien;
     }
 
     @Override

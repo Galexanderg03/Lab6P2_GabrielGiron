@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -106,7 +107,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaAliens = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -247,6 +248,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(EListaPlanetas);
 
         CAdd.setText("Añadir a Su Lista");
+        CAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CAddActionPerformed(evt);
+            }
+        });
 
         ELista.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(ELista);
@@ -262,6 +268,11 @@ public class Principal extends javax.swing.JFrame {
         EPlanetaF.setModel(new DefaultComboBoxModel());
 
         EGuardar.setText("Guardar");
+        EGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -554,16 +565,14 @@ public class Principal extends javax.swing.JFrame {
 
         jComboBox1.setModel(new DefaultComboBoxModel());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(jList1);
+        ListaAliens.setModel(new DefaultListModel());
+        jScrollPane5.setViewportView(ListaAliens);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton2.setText("->");
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane6.setViewportView(jTree1);
 
         jLabel24.setText("Edad");
@@ -601,7 +610,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1, 0, 136, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -694,19 +703,19 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(Editar)
                         .addGap(0, 60, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6)
-                        .addContainerGap())
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane5)
-                                .addContainerGap())))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(132, 132, 132)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane5)))))
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Arbol", jPanel6);
@@ -782,6 +791,33 @@ public class Principal extends javax.swing.JFrame {
             UpdateFrameRazas();
         }
     }//GEN-LAST:event_RegistrarRazaActionPerformed
+
+    private void EGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EGuardarActionPerformed
+        // TODO add your handling code here:
+        String Name = EName.getText();
+        int Edad = (Integer) EEdad.getValue();
+        boolean Amenaza = EAmenaza.isSelected();
+        Raza R = (Raza) ERaza.getSelectedItem();
+        Planetas P = (Planetas) EPlanetaF.getSelectedItem();
+        Explorador E = new Explorador(P,Name,Edad,Amenaza,R);
+        String S = "";
+        for (int i = 0; i < ELista.getModel().getSize(); i++) {
+            S = ((Planetas)ELista.getModel()).toString();
+            System.out.println(S);
+        }
+    }//GEN-LAST:event_EGuardarActionPerformed
+
+    private void CAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAddActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel L = (DefaultListModel) ELista.getModel();
+        DefaultComboBoxModel R = (DefaultComboBoxModel) EPlanetaF.getModel();
+        int i = EListaPlanetas.getSelectedIndex();
+        Planetas P = M.getPlanetas().get(i);
+        L.addElement(P);
+        ELista.setModel(L);
+        R.addElement(P);
+        EPlanetaF.setModel(R);
+    }//GEN-LAST:event_CAddActionPerformed
 
     public void UpdateFramePlanetas()
     {
@@ -884,6 +920,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField EditarName;
     private javax.swing.JComboBox<String> EditarPF;
     private javax.swing.JComboBox<String> EditarRaza;
+    private javax.swing.JList<String> ListaAliens;
     private javax.swing.JCheckBox PAgua;
     private javax.swing.JTextField PName;
     private javax.swing.JSpinner PTamaño;
@@ -926,7 +963,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
