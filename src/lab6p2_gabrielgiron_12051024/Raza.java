@@ -36,7 +36,7 @@ public class Raza {
 
     @Override
     public String toString() {
-        return "Raza{" + "PlanetaPrimordial=" + PlanetaPrimordial + ", Nombre=" + Nombre + '}';
+        return Nombre;
     }
     
 }

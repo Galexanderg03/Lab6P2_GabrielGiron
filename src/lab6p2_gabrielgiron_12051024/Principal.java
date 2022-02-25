@@ -162,6 +162,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Nombre");
 
         RegistrarRaza.setText("Registrar Raza");
+        RegistrarRaza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarRazaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -254,7 +259,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Planeta Favorito");
 
-        EPlanetaF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EPlanetaF.setModel(new DefaultComboBoxModel());
 
         EGuardar.setText("Guardar");
 
@@ -428,12 +433,14 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(CNEdad)
                             .addComponent(CNName)
                             .addComponent(CNRaza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CNGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(CNGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -486,7 +493,7 @@ public class Principal extends javax.swing.JFrame {
 
         jCheckBox1.setText("Es Amenaza");
 
-        ARaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ARaza.setModel(new DefaultComboBoxModel());
 
         jLabel23.setText("Raza");
 
@@ -545,7 +552,7 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new DefaultComboBoxModel());
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -567,24 +574,16 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel28.setText("Raza");
 
-        EditarPF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditarPF.setModel(new DefaultComboBoxModel());
 
-        EditarRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditarRaza.setModel(new DefaultComboBoxModel());
 
-        EditarListaPlanetas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        EditarListaPlanetas.setModel(new DefaultListModel());
         jScrollPane7.setViewportView(EditarListaPlanetas);
 
         EditarAdd.setText("Añadir");
 
-        EditarLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        EditarLista.setModel(new DefaultListModel());
         jScrollPane8.setViewportView(EditarLista);
 
         jLabel29.setText("Humanos Atrapados");
@@ -625,7 +624,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(43, 43, 43))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(EditarName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(EditarEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -633,7 +632,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(EditarAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -675,9 +674,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane7)
+                                    .addComponent(jScrollPane8)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(62, 62, 62)
                                 .addComponent(EditarAdd)))
@@ -693,7 +692,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(EditarAmenaza)
                         .addGap(18, 18, 18)
                         .addComponent(Editar)
-                        .addGap(0, 44, Short.MAX_VALUE))
+                        .addGap(0, 60, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane6)
                         .addContainerGap())
@@ -759,17 +758,57 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegistrarPlanetaActionPerformed
 
+    private void RegistrarRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarRazaActionPerformed
+        // TODO add your handling code here:
+        Planetas P = (Planetas) RazaBox.getSelectedItem();
+        String Name = RNombre.getText();
+        int cent = 0;
+        for (int i = 0; i < M.getRazas().size(); i++) {
+            if(M.getRazas().get(i).getNombre().equals(Name))
+            {
+                cent = 1;
+                break;
+            }
+        }
+        if(cent == 1)
+        {
+            JOptionPane.showMessageDialog(null, "Esa Raza ya Existe");
+        }
+        else
+        {
+            Raza R = new Raza(P,Name);
+            M.getRazas().add(R);
+            JOptionPane.showMessageDialog(null, "Raza Creado Exitosamente");
+            UpdateFrameRazas();
+        }
+    }//GEN-LAST:event_RegistrarRazaActionPerformed
+
     public void UpdateFramePlanetas()
     {
         int i = M.getPlanetas().size() - 1;
-        //Lista de Planetas en Explorador
+        //Lista de Planetas
         DefaultListModel L = (DefaultListModel) EListaPlanetas.getModel();
         L.addElement(M.getPlanetas().get(i));
         EListaPlanetas.setModel(L);
+        CNListaPlanetas.setModel(L);
+        EditarListaPlanetas.setModel(L);
         
-        //Combo Box Planeta Primordial
+        //Combo Box Planetas
         DefaultComboBoxModel R = (DefaultComboBoxModel) RazaBox.getModel();
         R.addElement(M.getPlanetas().get(i));
+        RazaBox.setModel(R);
+    }
+    
+    public void UpdateFrameRazas()
+    {
+        int i = M.getRazas().size() - 1;
+        DefaultComboBoxModel R = (DefaultComboBoxModel) ERaza.getModel();
+        R.addElement(M.getRazas().get(i));
+        ERaza.setModel(R);
+        CRaza.setModel(R);
+        CNRaza.setModel(R);
+        ARaza.setModel(R);
+        EditarRaza.setModel(R);
     }
     /**
      * @param args the command line arguments

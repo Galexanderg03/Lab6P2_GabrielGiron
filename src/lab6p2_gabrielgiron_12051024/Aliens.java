@@ -56,7 +56,7 @@ public class Aliens {
 
     @Override
     public String toString() {
-        return "Aliens{" + "Nombre=" + Nombre + ", Edad=" + Edad + ", Amenaza=" + Amenaza + ", raza=" + raza + '}';
+        return Nombre;
     }
     
 }
