@@ -5,10 +5,12 @@
  */
 package lab6p2_gabrielgiron_12051024;
 
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -34,6 +36,10 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel25 = new javax.swing.JLabel();
+        POPUPMENU = new javax.swing.JPopupMenu();
+        Eliminar = new javax.swing.JMenuItem();
+        Editar = new javax.swing.JMenuItem();
+        Imprimir = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -109,7 +115,7 @@ public class Principal extends javax.swing.JFrame {
         ListaAliens = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        Arbolito = new javax.swing.JTree();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -126,12 +132,26 @@ public class Principal extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         EditarAmenaza = new javax.swing.JCheckBox();
-        Editar = new javax.swing.JButton();
+        EditarBoton = new javax.swing.JButton();
         EditarHAtrapados = new javax.swing.JSpinner();
         EditarAAtrapados = new javax.swing.JSpinner();
         ComboPlanetas = new javax.swing.JComboBox<>();
 
         jLabel25.setText("jLabel25");
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        POPUPMENU.add(Eliminar);
+
+        Editar.setText("Editar");
+        POPUPMENU.add(Editar);
+
+        Imprimir.setText("Imprimir");
+        POPUPMENU.add(Imprimir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -583,10 +603,23 @@ public class Principal extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("->");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane6.setViewportView(jTree1);
+        Arbolito.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        Arbolito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ArbolitoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ArbolitoMouseReleased(evt);
+            }
+        });
+        jScrollPane6.setViewportView(Arbolito);
 
         jLabel24.setText("Edad");
 
@@ -614,7 +647,7 @@ public class Principal extends javax.swing.JFrame {
 
         EditarAmenaza.setText("Es Amenaza");
 
-        Editar.setText("Editar");
+        EditarBoton.setText("Editar");
 
         ComboPlanetas.setModel(new DefaultComboBoxModel());
         ComboPlanetas.addItemListener(new java.awt.event.ItemListener() {
@@ -669,7 +702,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel29)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(EditarHAtrapados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EditarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(EditarAmenaza)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -720,7 +753,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(EditarAmenaza)
                         .addGap(18, 18, 18)
-                        .addComponent(Editar)
+                        .addComponent(EditarBoton)
                         .addGap(0, 60, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -926,6 +959,68 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ComboPlanetasItemStateChanged
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(ListaAliens.getSelectedIndex() >= 0)
+        {
+            DefaultTreeModel ModeloArbol = (DefaultTreeModel) Arbolito.getModel();
+            DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) ModeloArbol.getRoot();
+            DefaultListModel Lista = (DefaultListModel) ListaAliens.getModel();
+            Aliens A = (Aliens) Lista.get(ListaAliens.getSelectedIndex());
+            String Nombre = A.getNombre();
+            int Edad = A.getEdad();
+            boolean Amenaza = A.isAmenaza();
+            Raza R = A.getRaza();
+            int cent = -1;
+            for (int i = 0; i < Raiz.getChildCount(); i++) {
+                if(Raiz.getChildAt(i).toString().equals(R.getPlanetaPrimordial().getNombre()))
+                {
+                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(new Aliens(Nombre,Edad,Amenaza,R));
+                    ((DefaultMutableTreeNode) Raiz.getChildAt(i)).add(p);
+                    cent = 1;
+                }
+            }
+            
+            if(cent == -1)
+            {
+                DefaultMutableTreeNode n = new DefaultMutableTreeNode(R.getPlanetaPrimordial().getNombre());
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(new Aliens(Nombre,Edad,Amenaza,R));
+                n.add(p);
+                Raiz.add(n);
+            }
+            ModeloArbol.reload();
+        }
+        else {
+            JOptionPane.showMessageDialog(this,
+                    "No hay persona seleccionada");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void PopUp(MouseEvent e)
+    {
+        POPUPMENU.show(this, e.getX()+150, e.getY()+150);
+    }
+    
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ArbolitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArbolitoMousePressed
+        // TODO add your handling code here:
+        if(evt.isPopupTrigger())
+        {
+            PopUp(evt);
+        }
+    }//GEN-LAST:event_ArbolitoMousePressed
+
+    private void ArbolitoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArbolitoMouseReleased
+        // TODO add your handling code here:
+        if(evt.isPopupTrigger())
+        {
+            PopUp(evt);
+        }
+    }//GEN-LAST:event_ArbolitoMouseReleased
+
     public void UpdateFramePlanetas()
     {
         int i = M.getPlanetas().size() - 1;
@@ -996,6 +1091,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton AGuardar;
     private javax.swing.JTextField ANombre;
     private javax.swing.JComboBox<String> ARaza;
+    private javax.swing.JTree Arbolito;
     private javax.swing.JButton CAdd;
     private javax.swing.JCheckBox CAmenaza;
     private javax.swing.JSpinner CAtrapados;
@@ -1019,10 +1115,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField EName;
     private javax.swing.JComboBox<String> EPlanetaF;
     private javax.swing.JComboBox<String> ERaza;
-    private javax.swing.JButton Editar;
+    private javax.swing.JMenuItem Editar;
     private javax.swing.JSpinner EditarAAtrapados;
     private javax.swing.JButton EditarAdd;
     private javax.swing.JCheckBox EditarAmenaza;
+    private javax.swing.JButton EditarBoton;
     private javax.swing.JSpinner EditarEdad;
     private javax.swing.JSpinner EditarHAtrapados;
     private javax.swing.JList<String> EditarLista;
@@ -1030,9 +1127,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField EditarName;
     private javax.swing.JComboBox<String> EditarPF;
     private javax.swing.JComboBox<String> EditarRaza;
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Imprimir;
     private javax.swing.JList<String> ListaAliens;
     private javax.swing.JCheckBox PAgua;
     private javax.swing.JTextField PName;
+    private javax.swing.JPopupMenu POPUPMENU;
     private javax.swing.JSpinner PTamaño;
     private javax.swing.JSpinner PTemperatura;
     private javax.swing.JTextField RNombre;
@@ -1086,7 +1186,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
     private ManejadorDatos M = new ManejadorDatos();
     
