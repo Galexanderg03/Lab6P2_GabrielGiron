@@ -148,9 +148,19 @@ public class Principal extends javax.swing.JFrame {
         POPUPMENU.add(Eliminar);
 
         Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         POPUPMENU.add(Editar);
 
         Imprimir.setText("Imprimir");
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirActionPerformed(evt);
+            }
+        });
         POPUPMENU.add(Imprimir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -648,6 +658,11 @@ public class Principal extends javax.swing.JFrame {
         EditarAmenaza.setText("Es Amenaza");
 
         EditarBoton.setText("Editar");
+        EditarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarBotonActionPerformed(evt);
+            }
+        });
 
         ComboPlanetas.setModel(new DefaultComboBoxModel());
         ComboPlanetas.addItemListener(new java.awt.event.ItemListener() {
@@ -998,11 +1013,20 @@ public class Principal extends javax.swing.JFrame {
     
     private void PopUp(MouseEvent e)
     {
-        POPUPMENU.show(this, e.getX()+150, e.getY()+150);
+        Object v1 = Arbolito.getSelectionPath().getLastPathComponent();
+        NodoSeleccionado = (DefaultMutableTreeNode) v1;
+        if(NodoSeleccionado.getUserObject() instanceof Aliens)
+        {
+            AlienSeleccionado = (Aliens) NodoSeleccionado.getUserObject();
+            POPUPMENU.show(this, e.getX()+150, e.getY()+150);
+        }
     }
     
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
+        DefaultTreeModel m = (DefaultTreeModel) Arbolito.getModel();
+        m.removeNodeFromParent(NodoSeleccionado);
+        m.reload();
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void ArbolitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArbolitoMousePressed
@@ -1020,6 +1044,34 @@ public class Principal extends javax.swing.JFrame {
             PopUp(evt);
         }
     }//GEN-LAST:event_ArbolitoMouseReleased
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        if(AlienSeleccionado instanceof Explorador)
+        {
+            Explorador E = (Explorador)AlienSeleccionado;
+            EditarName.setText(E.getNombre());
+            EditarEdad.setValue(E.getEdad());
+            DefaultListModel m = (DefaultListModel) EditarLista.getModel();
+            for (int i = 0; i < m.getSize(); i++) {
+                m.addElement(E.getPlanetasExplorados().get(i));
+            }
+        }
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,"Nombre: "+AlienSeleccionado.getNombre()+"\n"
+                + "Edad: "+AlienSeleccionado.getEdad()+"\n"
+                + "Amenaza: "+AlienSeleccionado.isAmenaza()+"\n"
+                + "Raza: "+AlienSeleccionado.getRaza().getNombre()
+        );
+    }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void EditarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBotonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_EditarBotonActionPerformed
 
     public void UpdateFramePlanetas()
     {
@@ -1188,6 +1240,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     private ManejadorDatos M = new ManejadorDatos();
+    private Aliens AlienSeleccionado;
+    private DefaultMutableTreeNode NodoSeleccionado;
     
     public void Defaults()
     {

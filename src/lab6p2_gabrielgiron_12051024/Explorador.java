@@ -36,10 +36,6 @@ public class Explorador extends Aliens{
         this.PlanetasExplorados = PlanetasExplorados;
     }
 
-    @Override
-    public String toString() {
-        return "Explorador{" + "PlanetaFavorito=" + PlanetaFavorito + ", PlanetasExplorados=" + PlanetasExplorados + '}';
-    }
-    
+
     
 }
