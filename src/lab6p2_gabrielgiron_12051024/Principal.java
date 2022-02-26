@@ -105,7 +105,6 @@ public class Principal extends javax.swing.JFrame {
         AAbducidos = new javax.swing.JSpinner();
         AGuardar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        ComboPlanetas = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         ListaAliens = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
@@ -130,6 +129,7 @@ public class Principal extends javax.swing.JFrame {
         Editar = new javax.swing.JButton();
         EditarHAtrapados = new javax.swing.JSpinner();
         EditarAAtrapados = new javax.swing.JSpinner();
+        ComboPlanetas = new javax.swing.JComboBox<>();
 
         jLabel25.setText("jLabel25");
 
@@ -578,8 +578,6 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
 
-        ComboPlanetas.setModel(new DefaultComboBoxModel());
-
         ListaAliens.setModel(new DefaultListModel());
         jScrollPane5.setViewportView(ListaAliens);
 
@@ -618,14 +616,16 @@ public class Principal extends javax.swing.JFrame {
 
         Editar.setText("Editar");
 
+        ComboPlanetas.setModel(new DefaultComboBoxModel());
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ComboPlanetas, 0, 136, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ComboPlanetas, 0, 136, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -721,15 +721,13 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6)
                             .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(ComboPlanetas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(132, 132, 132)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane5)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5)))
                         .addContainerGap())))
         );
 
@@ -823,6 +821,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < m.getSize(); i++) {
             E.getPlanetasExplorados().add((Planetas) m.getElementAt(i));
         }
+        R.getPlanetaPrimordial().getAlien().add(E);
         JOptionPane.showMessageDialog(null, "Explorador Agregado Exitosamente");
         m.removeAllElements();
         EName.setText("");
@@ -866,6 +865,7 @@ public class Principal extends javax.swing.JFrame {
         Raza R = (Raza) CRaza.getSelectedItem();
         int HumanosAtrapados = (Integer) CAtrapados.getValue();
         Cazador C = new Cazador(HumanosAtrapados,Name,Edad,Amenaza,R);
+        R.getPlanetaPrimordial().getAlien().add(C);
         JOptionPane.showMessageDialog(null, "Cazador Agregado Exitosamente");
         CNombre.setText("");
         CEdad.setValue(0);
@@ -880,6 +880,7 @@ public class Principal extends javax.swing.JFrame {
         Raza R = (Raza) ARaza.getSelectedItem();
         int AnimalesAtrapados = (Integer) AAbducidos.getValue();
         Abduzcan A = new Abduzcan(AnimalesAtrapados,Name,Edad,Amenaza,R);
+        R.getPlanetaPrimordial().getAlien().add(A);
         JOptionPane.showMessageDialog(null, "Abduzcan Agregado Exitosamente");
         ANombre.setText("");
         AEdad.setValue(0);
@@ -897,6 +898,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < m.getSize(); i++) {
             C.getPlanetasConquistados().add((Planetas) m.getElementAt(i));
         }
+        R.getPlanetaPrimordial().getAlien().add(C);
         JOptionPane.showMessageDialog(null, "Conquistador Agregado Exitosamente");
         m.removeAllElements();
         EName.setText("");
