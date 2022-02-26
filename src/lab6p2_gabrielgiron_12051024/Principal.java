@@ -98,14 +98,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         AEdad = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        AName = new javax.swing.JTextField();
+        AAmenaza = new javax.swing.JCheckBox();
+        ANombre = new javax.swing.JTextField();
         ARaza = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         AAbducidos = new javax.swing.JSpinner();
         AGuardar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboPlanetas = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         ListaAliens = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
@@ -352,6 +352,11 @@ public class Principal extends javax.swing.JFrame {
         CAmenaza.setText("Es Amenaza");
 
         CGuardar.setText("Guardar");
+        CGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -425,6 +430,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4.setViewportView(CNPlanetasC);
 
         CNGuardar.setText("Guardar");
+        CNGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CNGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -502,13 +512,18 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel22.setText("Animales Abducidos");
 
-        jCheckBox1.setText("Es Amenaza");
+        AAmenaza.setText("Es Amenaza");
 
         ARaza.setModel(new DefaultComboBoxModel());
 
         jLabel23.setText("Raza");
 
         AGuardar.setText("Guardar");
+        AGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -522,9 +537,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(AName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addComponent(ANombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                                 .addComponent(AEdad, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jCheckBox1))
+                            .addComponent(AAmenaza))
                         .addGap(70, 70, 70)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -544,7 +559,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ANombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ARaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -556,19 +571,19 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(AAbducidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(AAmenaza)
                     .addComponent(AGuardar))
                 .addContainerGap(291, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
 
-        jComboBox1.setModel(new DefaultComboBoxModel());
+        ComboPlanetas.setModel(new DefaultComboBoxModel());
 
         ListaAliens.setModel(new DefaultListModel());
         jScrollPane5.setViewportView(ListaAliens);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("->");
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
@@ -609,7 +624,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, 136, Short.MAX_VALUE)
+                    .addComponent(ComboPlanetas, 0, 136, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -706,7 +721,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ComboPlanetas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addGap(132, 132, 132)
@@ -765,6 +780,9 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Planeta Creado Exitosamente");
             UpdateFramePlanetas();
         }
+        PName.setText("");
+        PTemperatura.setValue(0);
+        PTamaño.setValue(0);
     }//GEN-LAST:event_RegistrarPlanetaActionPerformed
 
     private void RegistrarRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarRazaActionPerformed
@@ -790,6 +808,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Raza Creado Exitosamente");
             UpdateFrameRazas();
         }
+        RNombre.setText("");
     }//GEN-LAST:event_RegistrarRazaActionPerformed
 
     private void EGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EGuardarActionPerformed
@@ -800,24 +819,90 @@ public class Principal extends javax.swing.JFrame {
         Raza R = (Raza) ERaza.getSelectedItem();
         Planetas P = (Planetas) EPlanetaF.getSelectedItem();
         Explorador E = new Explorador(P,Name,Edad,Amenaza,R);
-        String S = "";
-        for (int i = 0; i < ELista.getModel().getSize(); i++) {
-            S = ((Planetas)ELista.getModel()).toString();
-            System.out.println(S);
+        DefaultListModel m = (DefaultListModel) ELista.getModel();
+        for (int i = 0; i < m.getSize(); i++) {
+            E.getPlanetasExplorados().add((Planetas) m.getElementAt(i));
         }
+        JOptionPane.showMessageDialog(null, "Explorador Agregado Exitosamente");
+        m.removeAllElements();
+        EName.setText("");
+        EEdad.setValue(0);
+        ELista.setModel(m);
     }//GEN-LAST:event_EGuardarActionPerformed
 
     private void CAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAddActionPerformed
         // TODO add your handling code here:
         DefaultListModel L = (DefaultListModel) ELista.getModel();
         DefaultComboBoxModel R = (DefaultComboBoxModel) EPlanetaF.getModel();
-        int i = EListaPlanetas.getSelectedIndex();
-        Planetas P = M.getPlanetas().get(i);
-        L.addElement(P);
-        ELista.setModel(L);
-        R.addElement(P);
-        EPlanetaF.setModel(R);
+        int a = EListaPlanetas.getSelectedIndex();
+        Planetas P = M.getPlanetas().get(a);
+        DefaultListModel m = (DefaultListModel) ELista.getModel();
+        int cent = 0;
+        for (int i = 0; i < m.getSize(); i++) {
+            if(((Planetas)m.getElementAt(i)).getNombre().equals(P.getNombre()))
+            {
+                cent = 1;
+                break;
+            }
+        }
+        if(cent == 1)
+        {
+            JOptionPane.showMessageDialog(null, "Ese Planeta ya fue agregado a los planetas Explorados");
+        }
+        else
+        {
+            L.addElement(P);
+            ELista.setModel(L);
+            R.addElement(P);
+            EPlanetaF.setModel(R);
+        }
     }//GEN-LAST:event_CAddActionPerformed
+
+    private void CGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CGuardarActionPerformed
+        // TODO add your handling code here:
+        String Name = CNombre.getText();
+        int Edad = (Integer) CEdad.getValue();
+        boolean Amenaza = CAmenaza.isSelected();
+        Raza R = (Raza) CRaza.getSelectedItem();
+        int HumanosAtrapados = (Integer) CAtrapados.getValue();
+        Cazador C = new Cazador(HumanosAtrapados,Name,Edad,Amenaza,R);
+        JOptionPane.showMessageDialog(null, "Cazador Agregado Exitosamente");
+        CNombre.setText("");
+        CEdad.setValue(0);
+        CAtrapados.setValue(0);
+    }//GEN-LAST:event_CGuardarActionPerformed
+
+    private void AGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGuardarActionPerformed
+        // TODO add your handling code here:
+        String Name = ANombre.getText();
+        int Edad = (Integer) AEdad.getValue();
+        boolean Amenaza = AAmenaza.isSelected();
+        Raza R = (Raza) ARaza.getSelectedItem();
+        int AnimalesAtrapados = (Integer) AAbducidos.getValue();
+        Abduzcan A = new Abduzcan(AnimalesAtrapados,Name,Edad,Amenaza,R);
+        JOptionPane.showMessageDialog(null, "Abduzcan Agregado Exitosamente");
+        ANombre.setText("");
+        AEdad.setValue(0);
+        AAbducidos.setValue(0);
+    }//GEN-LAST:event_AGuardarActionPerformed
+
+    private void CNGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNGuardarActionPerformed
+        // TODO add your handling code here:
+        String Name = EName.getText();
+        int Edad = (Integer) EEdad.getValue();
+        boolean Amenaza = EAmenaza.isSelected();
+        Raza R = (Raza) ERaza.getSelectedItem();
+        Conquistador C = new Conquistador(Name,Edad,Amenaza,R);
+        DefaultListModel m = (DefaultListModel) CNListaPlanetas.getModel();
+        for (int i = 0; i < m.getSize(); i++) {
+            C.getPlanetasConquistados().add((Planetas) m.getElementAt(i));
+        }
+        JOptionPane.showMessageDialog(null, "Conquistador Agregado Exitosamente");
+        m.removeAllElements();
+        EName.setText("");
+        EEdad.setValue(0);
+        CNListaPlanetas.setModel(m);
+    }//GEN-LAST:event_CNGuardarActionPerformed
 
     public void UpdateFramePlanetas()
     {
@@ -833,6 +918,7 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel R = (DefaultComboBoxModel) RazaBox.getModel();
         R.addElement(M.getPlanetas().get(i));
         RazaBox.setModel(R);
+        ComboPlanetas.setModel(R);
     }
     
     public void UpdateFrameRazas()
@@ -883,9 +969,10 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner AAbducidos;
+    private javax.swing.JCheckBox AAmenaza;
     private javax.swing.JSpinner AEdad;
     private javax.swing.JButton AGuardar;
-    private javax.swing.JTextField AName;
+    private javax.swing.JTextField ANombre;
     private javax.swing.JComboBox<String> ARaza;
     private javax.swing.JButton CAdd;
     private javax.swing.JCheckBox CAmenaza;
@@ -901,6 +988,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CNRaza;
     private javax.swing.JTextField CNombre;
     private javax.swing.JComboBox<String> CRaza;
+    private javax.swing.JComboBox<String> ComboPlanetas;
     private javax.swing.JCheckBox EAmenaza;
     private javax.swing.JSpinner EEdad;
     private javax.swing.JButton EGuardar;
@@ -931,8 +1019,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton RegistrarRaza;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -981,4 +1067,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
     private ManejadorDatos M = new ManejadorDatos();
+    
+    public void Defaults()
+    {
+        M.getPlanetas().add(new Planetas("Jupiter",100,100,false));
+        UpdateFramePlanetas();
+        M.getPlanetas().add(new Planetas("Marte",300,300,false));
+        UpdateFramePlanetas();
+        M.getRazas().add(new Raza(M.getPlanetas().get(0),"Joviano"));
+        UpdateFrameRazas();
+        M.getRazas().add(new Raza(M.getPlanetas().get(1),"Marciano"));
+        UpdateFrameRazas();
+        M.getAliens().add(new Cazador(100,"Alien Juan",23,true,M.getRazas().get(0)));
+        M.getAliens().add(new Abduzcan(100,"Alien Carlos",23,true,M.getRazas().get(1)));
+    }
 }

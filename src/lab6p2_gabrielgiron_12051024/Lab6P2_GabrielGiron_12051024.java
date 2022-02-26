@@ -17,7 +17,9 @@ public class Lab6P2_GabrielGiron_12051024 {
     public static void main(String[] args) {
         // TODO code application logic here
         Principal P = new Principal();
+        P.Defaults();
         P.setVisible(true);
     }
+    
     
 }
