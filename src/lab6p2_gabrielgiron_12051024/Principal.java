@@ -617,6 +617,11 @@ public class Principal extends javax.swing.JFrame {
         Editar.setText("Editar");
 
         ComboPlanetas.setModel(new DefaultComboBoxModel());
+        ComboPlanetas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboPlanetasItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -906,6 +911,21 @@ public class Principal extends javax.swing.JFrame {
         CNListaPlanetas.setModel(m);
     }//GEN-LAST:event_CNGuardarActionPerformed
 
+    private void ComboPlanetasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboPlanetasItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == 2)
+        {
+            Planetas P = (Planetas)ComboPlanetas.getSelectedItem();
+            DefaultListModel L = (DefaultListModel) ListaAliens.getModel();
+            L.removeAllElements();
+            for(int i = 0; i < P.getAlien().size(); i++)
+            {
+                L.addElement(P.getAlien().get(i));
+            }
+            ListaAliens.setModel(L);
+        }
+    }//GEN-LAST:event_ComboPlanetasItemStateChanged
+
     public void UpdateFramePlanetas()
     {
         int i = M.getPlanetas().size() - 1;
@@ -1082,5 +1102,7 @@ public class Principal extends javax.swing.JFrame {
         UpdateFrameRazas();
         M.getAliens().add(new Cazador(100,"Alien Juan",23,true,M.getRazas().get(0)));
         M.getAliens().add(new Abduzcan(100,"Alien Carlos",23,true,M.getRazas().get(1)));
+        M.getPlanetas().get(1).getAlien().add(M.getAliens().get(1));
+        M.getPlanetas().get(0).getAlien().add(M.getAliens().get(0));
     }
 }

@@ -25,9 +25,5 @@ public class Cazador extends Aliens{
         this.HumanosAtrapados = HumanosAtrapados;
     }
 
-    @Override
-    public String toString() {
-        return "Cazador{" + "HumanosAtrapados=" + HumanosAtrapados + '}';
-    }
     
 }
